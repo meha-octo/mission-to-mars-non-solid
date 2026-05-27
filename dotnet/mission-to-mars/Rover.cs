@@ -20,7 +20,7 @@ namespace mission_to_mars
             Position = position;
         }
 
-        public void ActiverRecuperation()
+        public virtual void ActiverRecuperation()
         {
             this.IsPretPourRecuperation = true;
         }
