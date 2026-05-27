@@ -2,26 +2,32 @@
 
 namespace mission_to_mars
 {
-    public class Helicoptere : Rover, IModuleMartien
+    public class Helicoptere : IModuleMartien, IModuleVolant
     {
         public bool IsPretPourRecuperation { get; private set; }
 
-        public Helicoptere(Direction direction, Position position) : base(direction, position)
+        public Position Position { get; protected set; }
+
+        private readonly Direction _direction;
+
+        public Helicoptere(Direction direction, Position position)
         {
+            _direction = direction;
+            Position = position;
         }
 
-        public override void Monter()
+        public void Monter()
         {
             Position = Position with { Z = Position.Z + 1 };
         }
 
 
-        public override void Descendre()
+        public void Descendre()
         {
             Position = Position with { Z = Position.Z - 1 };
         }
 
-        public override void ActiverRecuperation()
+        public void ActiverRecuperation()
         {
             PoserHelicoptere(this);
             this.IsPretPourRecuperation = true;
@@ -39,6 +45,29 @@ namespace mission_to_mars
             {
                 module.Descendre();
             }
+        }
+
+        public void Avancer()
+        {
+            Position = _direction switch
+            {
+                Direction.NORD => Position with { Y = Position.Y + 1 },
+                Direction.SUD => Position with { Y = Position.Y - 1 },
+                Direction.OUEST => Position with { X = Position.X - 1 },
+                _ => Position with { X = Position.X + 1 },
+            };
+        }
+
+
+        public void Reculer()
+        {
+            Position = _direction switch
+            {
+                Direction.NORD => Position with { Y = Position.Y - 1 },
+                Direction.SUD => Position with { Y = Position.Y + 1 },
+                Direction.OUEST => Position with { X = Position.X + 1 },
+                _ => Position with { X = Position.X - 1 },
+            };
         }
 
     }
