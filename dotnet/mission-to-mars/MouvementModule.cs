@@ -1,11 +1,12 @@
 namespace mission_to_mars;
 
-public static class MouvementModule
+public abstract class MouvementModule(Position Position, Direction Direction)
 {
-    
-    public static Position Avancer(Position Position, Direction _direction)
+    public Position Position { get; protected set; } = Position;
+
+    public void Avancer()
     {
-        return _direction switch
+        Position = Direction switch
         {
             Direction.NORD => Position with { Y = Position.Y + 1 },
             Direction.SUD => Position with { Y = Position.Y - 1 },
@@ -15,9 +16,9 @@ public static class MouvementModule
     }
 
 
-    public static Position Reculer(Position Position, Direction _direction)
+    public void Reculer()
     {
-         return _direction switch
+         Position = Direction switch
         {
             Direction.NORD => Position with { Y = Position.Y - 1 },
             Direction.SUD => Position with { Y = Position.Y + 1 },

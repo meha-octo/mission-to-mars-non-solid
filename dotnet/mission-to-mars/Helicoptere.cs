@@ -2,18 +2,12 @@
 
 namespace mission_to_mars
 {
-    public class Helicoptere : IModuleMartien, IModuleVolant
+    public class Helicoptere : MouvementModule, IModuleMartien, IModuleVolant
     {
         public bool IsPretPourRecuperation { get; private set; }
 
-        public Position Position { get; protected set; }
-
-        private readonly Direction _direction;
-
-        public Helicoptere(Direction direction, Position position)
+        public Helicoptere(Direction direction, Position position) : base(position, direction)
         {
-            _direction = direction;
-            Position = position;
         }
 
         public void Monter()
@@ -46,17 +40,5 @@ namespace mission_to_mars
                 Descendre();
             }
         }
-
-        public void Avancer()
-        {
-            Position = MouvementModule.Avancer(Position, _direction);
-        }
-
-
-        public void Reculer()
-        {
-            Position = MouvementModule.Reculer(Position, _direction);
-        }
-
     }
 }
