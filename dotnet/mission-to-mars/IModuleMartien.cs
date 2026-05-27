@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace mission_to_mars;
 
-namespace mission_to_mars
+public interface IModuleMartien
 {
-    public interface IModuleMartien
-    {
-        void Avancer();
+    void Avancer();
 
-        void Reculer();
+    void Reculer();
+    
+    void PreparerRécupération();
 
-        void Monter();
+    void ActiverRecuperation();
 
-        void Descendre();
+    bool IsPretPourRecuperation { get; }
 
-        void ActiverRecuperation();
-
-        bool IsPretPourRecuperation { get; }
-        
-        Position Position { get; }
-    }
+    Position Position { get; }
 }

@@ -1,12 +1,10 @@
-﻿using System;
+﻿namespace mission_to_mars;
 
-namespace mission_to_mars
+public enum Direction
 {
-    public enum Direction
-    {
-        NORD,
-        SUD,
-        EST,
-        OUEST
-    }
+    NORD,
+    SUD,
+    EST,
+    OUEST,
+    Nord_Ouest
 }

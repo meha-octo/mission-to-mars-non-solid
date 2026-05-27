@@ -1,26 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
-namespace mission_to_mars
+namespace mission_to_mars;
+
+public class Helicoptere(Direction direction, Position position) : ModuleMartien(direction, position)
 {
-    public class Helicoptere : Rover, IModuleMartien
+    public void Monter()
     {
-        public Helicoptere(Direction direction, Position position) : base(direction, position)
-        {
-        }
+        Position = Position with { Z = Position.Z + 1 };
+    }
 
-        public override void Monter()
-        {
-            Position = Position with { Z = Position.Z + 1 };
-        }
+    public void Descendre()
+    {
+        Position = Position with { Z = Position.Z - 1 };
+    }
 
+    public override void PreparerRécupération()
+    {
+        PoserHelicoptere();
+        ActiverRecuperation();
+    }
 
-        public override void Descendre()
+    public override void ActiverRecuperation()
+    {
+        IsPretPourRecuperation = true;
+    }
+
+    private void PoserHelicoptere()
+    {
+        var altitude = Position.Z;
+        Atterir(altitude);
+    }
+
+    private void Atterir(int altitude)
+    {
+        foreach (var _ in Enumerable.Range(0, altitude))
         {
-            Position = Position with { Z = Position.Z - 1 };
+            Descendre();
         }
     }
 }

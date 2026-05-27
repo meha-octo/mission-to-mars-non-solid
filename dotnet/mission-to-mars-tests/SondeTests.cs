@@ -1,50 +1,43 @@
-﻿using NUnit.Framework;
-using mission_to_mars;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using mission_to_mars;
+using NUnit.Framework;
 using Shouldly;
 
-namespace mission_to_mars.Tests
+namespace mission_to_mars_tests;
+
+[TestFixture()]
+public class SondeTests
 {
+    private Sonde sut;
 
-    [TestFixture()]
-    public class SondeTests
+    [Test()]
+    public void RoverDoitEtreRecuperer()
     {
-        private Sonde sut;
+        // Arrange
+        sut = new Sonde();
+        IModuleMartien perseverance = new Rover(Direction.NORD, new Position(4, 4, 0));
 
-        [Test()]
-        public void RoverDoitEtreRecuperer()
-        {
-            // Arrange
-            sut = new Sonde();
-            IModuleMartien perseverance = new Rover(Direction.NORD, new Position(4, 4, 0));
+        // Act
+        Sonde.PreparerRécupération(perseverance);
 
-            // Act
-            sut.PreparerRécupération(perseverance);
+        //Assert
+        perseverance.IsPretPourRecuperation.ShouldBe(true);
+        perseverance.Position.ShouldBe(new Position(4, 4, 0), "Récupérer perseverance ne doit pas changer sa position");
 
-            //Assert
-            perseverance.IsPretPourRecuperation.ShouldBe(true);
-            perseverance.Position.ShouldBe(new Position(4, 4, 0), "Récupérer perseverance ne doit pas changer sa position");
+    }
 
-        }
+    [Test()]
+    public void HelicoptereDoitEtreRecupéré()
+    {
+        // Arrange
+        sut = new Sonde();
+        IModuleMartien ingenuity = new Helicoptere(Direction.NORD, new Position(4, 4, 50));
 
-        [Test()]
-        public void HelicoptereDoitEtreRecupéré()
-        {
-            // Arrange
-            sut = new Sonde();
-            IModuleMartien ingenuity = new Helicoptere(Direction.NORD, new Position(4, 4, 50));
+        // Act
+        Sonde.PreparerRécupération(ingenuity);
 
-            // Act
-            sut.PreparerRécupération(ingenuity);
+        //Assert
+        ingenuity.IsPretPourRecuperation.ShouldBe(true);
+        ingenuity.Position.ShouldBe(new Position(4, 4, 0), "Récupérer ingenuity implique de le faire attérir");
 
-            //Assert
-            ingenuity.IsPretPourRecuperation.ShouldBe(true);
-            ingenuity.Position.ShouldBe(new Position(4, 4, 0), "Récupérer ingenuity implique de le faire attérir");
-
-        }
     }
 }
