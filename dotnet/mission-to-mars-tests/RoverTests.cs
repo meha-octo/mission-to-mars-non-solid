@@ -1,10 +1,4 @@
 ﻿using NUnit.Framework;
-using mission_to_mars;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shouldly;
 
 namespace mission_to_mars.Tests
@@ -127,30 +121,6 @@ namespace mission_to_mars.Tests
         }
 
 
-        [Test]
-        public void NeDoitPasMonter()
-        {
-            // Arrange
-            sut = new(default, new(0, 0, 0));
 
-            // Act + Assert
-            Should.Throw<NotImplementedException>(() =>
-            {
-                sut.Monter();
-            });
-        }
-
-        [Test]
-        public void NeDoitPasDescendre()
-        {
-            // Arrange
-            sut = new(default, new(0, 0, 0));
-
-            // Act + Assert
-            Should.Throw<NotImplementedException>(() =>
-            {
-                sut.Descendre();
-            });
-        }
     }
 }

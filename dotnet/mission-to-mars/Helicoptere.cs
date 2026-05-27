@@ -29,45 +29,33 @@ namespace mission_to_mars
 
         public void ActiverRecuperation()
         {
-            PoserHelicoptere(this);
+            PoserHelicoptere();
             this.IsPretPourRecuperation = true;
         }
 
-        private void PoserHelicoptere(IModuleMartien module)
+        private void PoserHelicoptere()
         {
-            int altitude = module.Position.Z;
-            Atterir(module, altitude);
+            int altitude = Position.Z;
+            Atterir(altitude);
         }
 
-        private void Atterir(IModuleMartien module, int altitude)
+        private void Atterir(int altitude)
         {
             foreach (var _ in Enumerable.Range(0, altitude))
             {
-                module.Descendre();
+                Descendre();
             }
         }
 
         public void Avancer()
         {
-            Position = _direction switch
-            {
-                Direction.NORD => Position with { Y = Position.Y + 1 },
-                Direction.SUD => Position with { Y = Position.Y - 1 },
-                Direction.OUEST => Position with { X = Position.X - 1 },
-                _ => Position with { X = Position.X + 1 },
-            };
+            Position = MouvementModule.Avancer(Position, _direction);
         }
 
 
         public void Reculer()
         {
-            Position = _direction switch
-            {
-                Direction.NORD => Position with { Y = Position.Y - 1 },
-                Direction.SUD => Position with { Y = Position.Y + 1 },
-                Direction.OUEST => Position with { X = Position.X + 1 },
-                _ => Position with { X = Position.X - 1 },
-            };
+            Position = MouvementModule.Reculer(Position, _direction);
         }
 
     }
