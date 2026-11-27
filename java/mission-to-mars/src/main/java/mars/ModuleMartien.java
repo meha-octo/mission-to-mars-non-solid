@@ -10,11 +10,11 @@ public abstract class ModuleMartien {
         this.position = position;
     }
 
-    void avancer() {
+    protected void avancer() {
         position = position.avancer(direction);
     }
 
-    void reculer() {
+    protected void reculer() {
         position = position.reculer(direction);
     }
 
@@ -22,11 +22,11 @@ public abstract class ModuleMartien {
         pretPourRecuperation = true;
     }
 
-    Position getPosition() {
+    protected Position getPosition() {
         return position;
     }
 
-    boolean isPretPourRecuperation() {
+    protected boolean isPretPourRecuperation() {
         return pretPourRecuperation;
     }
 }
