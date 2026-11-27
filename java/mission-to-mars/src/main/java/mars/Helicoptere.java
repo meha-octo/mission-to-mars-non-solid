@@ -1,6 +1,6 @@
 package mars;
 
-public class Helicoptere extends Rover implements ModuleMartien {
+public class Helicoptere extends ModuleMartien {
 
   public Helicoptere(Direction direction, Position position) {
     super(direction, position);
