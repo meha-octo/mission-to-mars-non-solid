@@ -43,16 +43,6 @@ public class Rover implements ModuleMartien {
     }
   }
 
-  @Override
-  public void monter() {
-    throw new UnsupportedOperationException("Un rover ne vole pas");
-  }
-
-  @Override
-  public void descendre() {
-    throw new UnsupportedOperationException("Un rover ne vole pas");
-  }
-
   public void activerRecuperation() {
     pretPourRecuperation = true;
   }

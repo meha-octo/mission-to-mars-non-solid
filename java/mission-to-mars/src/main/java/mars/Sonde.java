@@ -6,17 +6,17 @@ public class Sonde {
 
   public void preparerRecuperation(ModuleMartien moduleMartien) {
     if (moduleMartien instanceof Helicoptere) {
-      poserHelicoptere(moduleMartien);
+      poserHelicoptere((Helicoptere) moduleMartien);
     }
     moduleMartien.activerRecuperation();
   }
 
-  private void poserHelicoptere(ModuleMartien moduleMartien) {
+  private void poserHelicoptere(Helicoptere moduleMartien) {
     int altitude = moduleMartien.getPosition().z();
     atterir(moduleMartien, altitude);
   }
 
-  private void atterir(ModuleMartien moduleMartien, int altitude) {
+  private void atterir(Helicoptere moduleMartien, int altitude) {
     IntStream.range(0, altitude).forEach((i -> moduleMartien.descendre()));
   }
 }

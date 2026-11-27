@@ -8,10 +8,6 @@ public interface ModuleMartien {
 
 	void reculer();
 
-	void monter();
-
-	void descendre();
-
 	void activerRecuperation();
 
 	boolean isPretPourRecuperation();

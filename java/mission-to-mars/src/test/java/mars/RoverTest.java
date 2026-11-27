@@ -112,23 +112,4 @@ class RoverTest {
 		// Assert
 		assertEquals(new Position(3, 4, 0), sut.getPosition());
 	}
-
-	@Test
-	void neDoitPasMonter() {
-		// Arrange
-		sut = new Rover(Direction.NORD, new Position(4, 4, 0));
-
-		// Act + Assert
-		assertThrows(UnsupportedOperationException.class, () -> sut.monter());
-	}
-
-	@Test
-	void neDoitPasDescendre() {
-		// Arrange
-		sut = new Rover(Direction.SUD, new Position(4, 4, 3));
-
-		// Act + Assert
-		assertThrows(UnsupportedOperationException.class, () -> sut.descendre());
-	}
-
 }
