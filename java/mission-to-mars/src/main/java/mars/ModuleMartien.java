@@ -1,58 +1,32 @@
 package mars;
 
-import static mars.Direction.*;
-
 public abstract class ModuleMartien {
-	Direction direction;
-	Position position;
-	protected boolean pretPourRecuperation = false;
+    protected boolean pretPourRecuperation = false;
+    Direction direction;
+    Position position;
 
-	public ModuleMartien(Direction direction, Position position) {
-		this.direction = direction;
-		this.position = position;
-	}
+    public ModuleMartien(Direction direction, Position position) {
+        this.direction = direction;
+        this.position = position;
+    }
 
-	void avancer() {
-		switch (direction) {
-			case NORD:
-				position = new Position(position.x(), position.y() + 1, getPosition().z());
-				break;
-			case SUD:
-				position = new Position(position.x(), position.y() - 1, position.z());
-				break;
-			case OUEST:
-				position = new Position(position.x() - 1, position.y(), position.z());
-				break;
-			default:
-				position = new Position(position.x() + 1, position.y(), position.z());
-		}
-	}
+    void avancer() {
+        position = position.avancer(direction);
+    }
 
-	void reculer() {
-		switch (direction) {
-			case NORD:
-				position = new Position(position.x(), position.y() - 1, position.z());
-				break;
-			case SUD:
-				position = new Position(position.x(), position.y() + 1, position.z());
-				break;
-			case OUEST:
-				position = new Position(position.x() + 1, position.y(), position.z());
-				break;
-			default:
-				position = new Position(position.x() - 1, position.y(), position.z());
-		}
-	}
+    void reculer() {
+        position = position.reculer(direction);
+    }
 
-	void activerRecuperation() {
-		pretPourRecuperation = true;
-	}
+    void activerRecuperation() {
+        pretPourRecuperation = true;
+    }
 
-	Position getPosition() {
-		return position;
-	}
+    Position getPosition() {
+        return position;
+    }
 
-	boolean isPretPourRecuperation() {
-		return pretPourRecuperation;
-	}
+    boolean isPretPourRecuperation() {
+        return pretPourRecuperation;
+    }
 }
