@@ -1,6 +1,8 @@
 package mars;
 
-public interface ModuleMartien {
+public abstract class ModuleMartien {
+//test
+	private Direction direction;
 
 	Position getPosition();
 
